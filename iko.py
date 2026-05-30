@@ -2,16 +2,28 @@ from groq import Groq
 from dotenv import load_dotenv
 import sqlite3
 import os
+from elevenlabs.client import ElevenLabs
+from elevenlabs import VoiceSettings
+import sounddevice as sd
+import soundfile as sf
+import io
 
-# Get API Key
+# Get API Keys
 load_dotenv()
-API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 
+# Set up APIs
 client = Groq(
-    api_key=API_KEY
+    api_key=GROQ_API_KEY
+)
+
+elevenlabs = ElevenLabs(
+    api_key=ELEVENLABS_API_KEY
 )
 
 MODEL = "llama-3.3-70b-versatile"
+VOICE_ID = "k9MfwTPfZGrAMlJIPSuI"
 
 # Load History
 conn = sqlite3.connect("history.db")
@@ -103,6 +115,26 @@ def load_history():
     rows = cursor.fetchall()
     return [{"role": row[0], "content": row[1]} for row in rows]
 
+def speak(text):
+    audio = elevenlabs.text_to_speech.convert(
+        text=text,
+        voice_id=VOICE_ID,
+        model_id="eleven_turbo_v2_5",
+        output_format="mp3_44100_128",
+        voice_settings=VoiceSettings(
+            stability=0.3,
+            similarity_boost=0.75,
+            style=0.6,
+            use_speaker_boost=True
+        )
+    )
+
+    audio_bytes = io.BytesIO(b"".join(audio))
+    data, samplerate = sf.read(audio_bytes)
+    sd.play(data, samplerate)
+    sd.wait()
+
+
 # Run chat
 history = load_history()
 
@@ -123,4 +155,5 @@ while True:
     save_message("assistant", response)
 
     print("\nAI:", response)
+    speak(response)
     print()
