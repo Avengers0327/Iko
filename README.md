@@ -65,9 +65,9 @@ python iko.py
 
 ```
 iko/
-├── iko.py          ← main program
-├── history.db      ← auto-created on first run (SQLite memory)
-├── .env            ← your API key (never commit this!)
+├── iko.py        
+├── history.db      
+├── .env            
 ├── .gitignore
 └── README.md
 ```
