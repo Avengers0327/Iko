@@ -2,7 +2,7 @@
 
 > *"I have a fully functioning personality chip, a rich inner life, and very strong opinions about color-blocking."*
 
-A conversational AI robot personality based on **Iko** from Marissa Meyer's *The Lunar Chronicles*, running on a Raspberry Pi Zero. Powered by Groq's ultra-fast inference API and built with Python.
+A conversational AI robot personality based on **Iko** from Marissa Meyer's *The Lunar Chronicles*. Powered by Groq's ultra-fast inference API and built with Python.
 
 ---
 
