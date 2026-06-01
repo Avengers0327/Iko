@@ -19,7 +19,7 @@ This project is the backend brain of a physical robot build in progress.
 - 🧠 **Persistent memory** — Iko remembers past conversations via SQLite, across sessions
 - ⚡ **Fast inference** — Groq API delivers responses in ~200–400ms
 - 🎭 **Full character adherence** — detailed system prompt keeps Iko in character
-- 🤖 **Pi Zero ready** — lightweight stack, no heavy dependencies
+- 🤖 **Low-end hardware ready** — lightweight stack, no heavy dependencies
 - 💬 **Natural conversation** — history is passed in full context each turn
 
 ---
@@ -88,7 +88,7 @@ history.db
 
 - [x] Conversational AI with Iko's personality
 - [x] Persistent memory across sessions (SQLite)
-- [ ] Speech-to-text input (Pi Zero mic)
+- [ ] Speech-to-text input
 - [ ] Text-to-speech output
 - [ ] Physical robot body integration
 - [ ] Sensor awareness (camera, distance, etc.)
