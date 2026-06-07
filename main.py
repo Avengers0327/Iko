@@ -270,4 +270,7 @@ class Iko:
 
 if __name__ == "__main__":
     iko = Iko()
-    iko.run()
+    try:
+        iko.run()
+    except KeyboardInterrupt:
+        print("\nGoodbye!")
