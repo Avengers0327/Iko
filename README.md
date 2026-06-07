@@ -62,10 +62,9 @@ python main.py
 
 ```
 iko/
-├── main.py         # Core Iko class — listen, think, speak
-├── freq_test.py    # Audio frequency debug tool
+├── main.py         # Core Iko class — listen, think, speak - either main.py, optimzed.py, or macos.py
 ├── history.db      # Persistent conversation memory (auto-created)
-├── .env            # API keys (never commit this)
+├── .env            # API keys
 ├── .gitignore
 └── README.md
 ```
