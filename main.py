@@ -173,7 +173,7 @@ class Iko:
                     first_high_chunk = i
                     break
 
-            time.sleep(self.CHUNK_DURATION * high_chunks)
+            time.sleep(self.CHUNK_DURATION * first_high_chunk)
 
             with sd.RawInputStream(samplerate=self.SAMPLE_RATE, channels=1, dtype='int16',
                                    blocksize=self.CHUNK_SIZE) as stream:
