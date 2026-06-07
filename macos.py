@@ -12,17 +12,19 @@ import numpy as np
 import threading
 import time
 import sys
+import ctypes
 
 
 class SuppressAUHAL:
     def __enter__(self):
-        self._devnull = open(os.devnull, 'w')
-        self._stderr = sys.stderr
-        sys.stderr = self._devnull
- 
+        self._devnull = os.open(os.devnull, os.O_WRONLY)
+        self._stderr_fd = os.dup(2)
+        os.dup2(self._devnull, 2)
+
     def __exit__(self, *args):
-        sys.stderr = self._stderr
-        self._devnull.close()
+        os.dup2(self._stderr_fd, 2)
+        os.close(self._stderr_fd)
+        os.close(self._devnull)
       
 
 class Iko:
