@@ -184,7 +184,7 @@ class Iko:
                     chunk_array = np.frombuffer(chunk, dtype=np.int16).astype(float)
 
                     # ignore quiet sounds (AC noise, etc.)
-                    if np.abs(chunk_array).mean() < 3000:
+                    if np.abs(chunk_array).mean() < 2000:
                         continue
 
                     # ignore Iko's own voice frequency range
